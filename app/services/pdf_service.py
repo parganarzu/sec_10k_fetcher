@@ -11,6 +11,14 @@ class PDFService:
         os.makedirs(output_dir, exist_ok=True)
 
     def save_pdf(self, company_name: str, url: str):
+        """Generates a PDF of the SEC 10-K filing page for a given company.
+        Args:
+            company_name (str): The name of the company (used for filename).
+            url (str): The URL of the 10-K filing page.
+        Returns:
+            str: The path to the generated PDF file.
+        """
+
         file_path = f"{self.output_dir}/{company_name}_10K.pdf"
         logger.info(f"Generating PDF for {company_name}")
 

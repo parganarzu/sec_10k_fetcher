@@ -15,6 +15,7 @@ The CIK (Central Index Key) is required to query company filings.
 * SEC API integration
 * Configurable companies list
 * Logger (console)
+* Automated PDF generation
 
 ## Design Decisions
 
@@ -22,3 +23,47 @@ The CIK (Central Index Key) is required to query company filings.
 * CIKs were resolved using the SEC lookup service:
   <https://www.sec.gov/search-filings/cik-lookup>
 * Playwright was chosen for accurate rendering, at the cost of heavier dependencies.
+
+## Installation and Run
+
+1.Clone the repository:
+
+```bash
+git clone https://github.com/<parganarzu>/sec_10k_fetcher.git
+cd sec_10k_fetcher
+```
+
+2.Create a Python virtual environment:
+
+```bash
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\Activate.ps1  # Windows
+```
+
+3.Install dependencies:
+
+```bash
+pip install -r requirements.txt
+playwright install
+```
+
+3.Run the app:
+
+```bash
+python -m app.main
+```
+
+4.Run the unit tests
+
+```bash
+pytest -v tests
+```
+
+## Expected Output
+
+vscode-pdf extension can be used for displaying pdfs.
+
+![alt text](image.png)
+
+![alt text](image-2.png)

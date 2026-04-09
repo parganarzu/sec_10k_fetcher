@@ -11,6 +11,12 @@ class SECClient:
         }
 
     def get_latest_10k_url(self, cik: str):
+        """Fetches the URL of the latest 10-K filing for a given CIK.
+        Args:
+            cik (str): The Central Index Key of the company.
+        Returns:
+            str: The URL of the latest 10-K filing, or None if not found.   
+        """
         url = self.BASE_URL.format(cik)
 
         response = requests.get(url, headers=self.headers)

@@ -6,6 +6,8 @@ from app.services.sec_client import SECClient
 logger = setup_logger()
 
 def run():
+    """Main function to fetch and save SEC 10-K filings as PDFs."""
+
     logger.info("SEC 10-K Fetcher Started")
 
     sec = SECClient(EMAIL)
