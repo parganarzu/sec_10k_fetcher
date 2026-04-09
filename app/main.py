@@ -1,5 +1,6 @@
-from app.config import COMPANIES, EMAIL
+from app.config import COMPANIES, EMAIL, OUTPUT_DIR
 from app.logger import setup_logger
+from app.services.pdf_service import PDFService
 from app.services.sec_client import SECClient
 
 logger = setup_logger()
@@ -8,6 +9,8 @@ def run():
     logger.info("SEC 10-K Fetcher Started")
 
     sec = SECClient(EMAIL)
+    pdf = PDFService(OUTPUT_DIR)
+
     for company in COMPANIES:
         logger.info(f"Fetching {company.name} (CIK: {company.cik})")
 
@@ -17,7 +20,8 @@ def run():
                 logger.warning(f"{company.name} → 10-K not found")
                 continue
 
-            # save pdf here ..
+            path = pdf.save_pdf(company.name, url)
+            logger.info(f"PDF saved to: {path}")
 
         except Exception as e:
             logger.error(f"{company.name} → Error: {e}")
